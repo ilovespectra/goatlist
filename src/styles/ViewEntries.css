@@ -79,12 +79,12 @@
     margin-left: 5px;
   }
   
-  .modal {
+  /* .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.574);
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -93,7 +93,7 @@
   .modal-content {
     text-align: center;
     font-weight: bold;
-  }
+  } */
 
   .view-entries {
     padding: 20px;
@@ -154,10 +154,6 @@
   
   .handle {
     font-weight: bold;
-    color: white;
-  }
-  
-  .nickname {
     color: white;
   }
   

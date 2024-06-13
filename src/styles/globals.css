@@ -21,8 +21,8 @@ h1 {
 
 .dateFilter,
 .typeFilter {
-  background-color: #ffffff; /* Dark grey background */
-  color: #333; /* White text color */
+  background-color: #1a1a1ab8; /* Dark grey background */
+  color: #b1b1b1; /* White text color */
   font-family: 'Courier New', Courier, monospace;
   width: 40vw;
   height: 2em; /* Reduced height to make it compact */
@@ -78,7 +78,7 @@ a {
   width: 20vw;
   /* height: 9em; */
   padding: 0.5em;
-  border: dotted white;
+  border: dotted rgb(69, 24, 105);
   resize: none;
   box-sizing: border-box;
   margin-bottom: 1em;
@@ -113,3 +113,32 @@ a {
   transform: scale(1.05);
   background-color: #f0f0f0;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8); /* Set background color to black with some opacity */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Align text to left */
+  color: black; /* Text color */
+}
+
+.modal p {
+  margin-left: 20px; /* Indent paragraphs */
+}
+
+.modal button {
+  background-color: white; /* Button background color */
+  color: black; /* Button text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+

@@ -120,7 +120,7 @@ const Goatlist: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        <button className="btn" type="submit">
+        <button className="btn lowercase" type="submit">
           submit
         </button>
       </form>

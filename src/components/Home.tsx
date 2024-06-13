@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import LandingModal from './LandingModal';
 
-const Home = () => {
+const Home: React.FC = () => {
+  useEffect(() => {
+    const modal = document.getElementById('modal-root');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }, []);
+
   return (
-
-    <div className="container">
-        <a href="goatlist.html" className="group w-30 m-2 btn disabled:animate-none lowercase">join the goatlist</a>
+    <div>
+      {/* Your home page content goes here */}
+      <LandingModal />
     </div>
-    
-
   );
 };
 

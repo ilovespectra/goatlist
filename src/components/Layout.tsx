@@ -5,6 +5,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import Home from './Home';
 import Goatlist from "./Join";
 import ViewEntries from "./Goatlist";// Import the ViewEntries component
+import LandingModal from "./LandingModal";
 
 export const Layout: FC = ({ children }) => {
   const { publicKey } = useWallet();
@@ -17,8 +18,11 @@ export const Layout: FC = ({ children }) => {
   };
 
   return (
+    
     <div className="md:hero mx-auto p-4">
+      
       <div className="md:hero-content flex flex-col">
+      <LandingModal />
         <div className="text-center">
         <div className="md:w-full text-center my-2">
           <img src="/solologo.png" alt="Island DAO Goatlist" />
