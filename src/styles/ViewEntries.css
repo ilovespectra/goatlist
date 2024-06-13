@@ -1,0 +1,164 @@
+.goatListContainer {
+    padding: 20px;
+  }
+  
+  .downloadButtonContainer {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .downloadButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .userLink {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .userCard {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .userCard:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profilePicture {
+    margin-bottom: 15px;
+  }
+  
+  .profileImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .userInfo {
+    text-align: center;
+  }
+  
+  .handle {
+    font-weight: bold;
+  }
+  
+  .nickname {
+    color: #6c757d;
+  }
+  
+  .pubkey {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .copyButton {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  
+  .modal-content {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .view-entries {
+    padding: 20px;
+  }
+  
+  .download-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .entry-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
+    gap: 20px; /* Space between items */
+  }
+  
+  .userLink {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .userCard {
+    background-color: black;
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  
+  .userCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .profilePicture {
+    margin-bottom: 15px;
+  }
+  
+  .profileImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .userInfo {
+    text-align: center;
+  }
+  
+  .handle {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .nickname {
+    color: white;
+  }
+  
+  
