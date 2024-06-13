@@ -20,6 +20,9 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           name="description"
           content="island dao goatlist"
         />
+        <meta property="og:title" content="goatlist" />
+        <meta property="og:description" content="Island DAO Goatlist" />
+        <meta property="og:image" content="/solologo.png" /> 
       </Head>
 
       <ContextProvider>
