@@ -5,9 +5,10 @@ iykyk
 ## things it does
 
 - works on devnet
-- logs pubkey to firebase firestore
-- allows you to download all pubkeys
 - helps you follow your fellow kri kri
+  
+- logs pubkey to firebase firestore
+- allows you to download all pubkeys as a comma separated wallet list
 - automatically removes duplicate wallet addresses from the csv txt
 
 ## Getting Started
