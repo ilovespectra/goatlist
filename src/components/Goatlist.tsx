@@ -133,11 +133,12 @@ function ViewEntries() {
                                     rel="noopener noreferrer nofollow"
                                     className="text-center"
                                 >
-                                    <img src={entry.image} alt="Profile" className="w-24 h-24 rounded-full mx-auto" />
-                                    <p className="text-white text-lg text-wrap">
+                                    {/* <img src="/logo2.png" alt="goated" className="w-16 h-16 mb-3 rounded-full mx-auto" /> */}
+                                    <img src={entry.image} alt="a url needed here badly" className="w-24 h-24 text-gray-800 rounded-full mx-auto" />
+                                    <p className="text-white text-md text-wrap">
                                         <strong>{entry.twitterHandle}</strong>
                                     </p>
-                                    <p className="text-white text-wrap">{entry.nickname}</p>
+                                    <p className="text-white text-sm text-wrap">{entry.nickname}</p>
 
                                 </a>
                                 {publicKey && publicKey.toString() === entry.pubkey && (
