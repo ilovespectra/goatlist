@@ -24,7 +24,7 @@ export const Layout: FC = ({ children }) => {
       <div className="md:hero-content flex flex-col">
       <LandingModal />
         <div className="text-center">
-        <div className="md:w-full text-center my-2">
+        <div className="md:w-full flex justify-center text-center my-2">
           <img src="/solologo.png" alt="Island DAO Goatlist" />
         </div>
           {/* Display the buttons */}
