@@ -78,12 +78,16 @@ function ViewEntries() {
     };
 
     const handleDownloadPubkeys = () => {
-        const uniquePubkeys = new Set<string>();
-        entryList.forEach(entry => uniquePubkeys.add(entry.pubkey));
-        const pubkeys = [...uniquePubkeys].join(', ');
-        const blob = new Blob([pubkeys], { type: 'text/plain;charset=utf-8' });
-        saveAs(blob, 'goatlist.txt');
+        // Concatenate all the pubkeys into a single string separated by newline characters
+        const pubkeys = entryList.map(entry => entry.pubkey).join('\n');
+    
+        // Create Blob with pubkeys as CSV data
+        const blob = new Blob([pubkeys], { type: 'text/csv;charset=utf-8' });
+    
+        // Save the Blob as a CSV file
+        saveAs(blob, 'goatlist.csv');
     };
+    
 
     return (
         <div className="container">
@@ -93,7 +97,7 @@ function ViewEntries() {
             >
                 save wallet list
             </button>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: '10px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '10px' }}>
                 {entryList.map((entry) => (
                     <div key={entry.id} className="text-center bg-transparent border-2 border-gray rounded-lg p-4 transition-transform transform hover:scale-105">
                         {editingId === entry.id ? (
@@ -130,10 +134,11 @@ function ViewEntries() {
                                     className="text-center"
                                 >
                                     <img src={entry.image} alt="Profile" className="w-24 h-24 rounded-full mx-auto" />
-                                    <p className="text-white text-lg overflow-wrap break-word">
+                                    <p className="text-white text-lg text-wrap">
                                         <strong>{entry.twitterHandle}</strong>
                                     </p>
-                                    <p className="text-white">{entry.nickname}</p>
+                                    <p className="text-white text-wrap">{entry.nickname}</p>
+
                                 </a>
                                 {publicKey && publicKey.toString() === entry.pubkey && (
                                     <div className="flex justify-between mt-2">

@@ -10,6 +10,12 @@ body {
   text-transform: lowercase;
 }
 
+.text-wrap {
+  word-wrap: break-word; /* For older browser compatibility */
+  overflow-wrap: break-word; /* Standard property for modern browsers */
+}
+
+
 h1 {
   font-family: 'Courier New', Courier, monospace;
   font-size: larger;
@@ -37,7 +43,7 @@ h1 {
 }
 
 .container {
-  width: 800px;
+  width: 1000px;
 }
 
 .solologo {
