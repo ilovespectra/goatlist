@@ -1,11 +1,15 @@
 import { initializeApp, FirebaseApp, getApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, DocumentData } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, deleteDoc, doc, DocumentData } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
-import Image from 'next/image';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { FaTimes } from 'react-icons/fa'; // Install react-icons if you haven't already
+import 'tailwindcss/tailwind.css'; // Assuming you're using Tailwind CSS
 
 function ViewEntries() {
-    const [entryList, setEntryList] = useState([]);
+    const [entryList, setEntryList] = useState<DocumentData[]>([]);
+    const { publicKey } = useWallet();
+
     const firebaseConfig = {
         apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
         authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -14,8 +18,8 @@ function ViewEntries() {
         messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
         appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
         measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
-      };
-    
+    };
+
     // Initialize Firebase if not already initialized
     let app: FirebaseApp;
     try {
@@ -26,17 +30,15 @@ function ViewEntries() {
     const db = getFirestore(app);
 
     const fetchAndDisplayEntries = () => {
-        const users = [];
-        
+        const users: DocumentData[] = [];
         const usersCollection = collection(db, 'users'); // Changed collection name to 'users'
         
         getDocs(usersCollection)
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const userData = doc.data();
-                    users.push(userData);
+                    users.push({ id: doc.id, ...userData });
                 });
-                
                 setEntryList(users);
             })
             .catch((error) => {
@@ -49,46 +51,46 @@ function ViewEntries() {
     }, []); // Fetch and display entries when component mounts
 
     const handleDownloadPubkeys = () => {
-    // Use a Set to store unique pubkeys
-    const uniquePubkeys = new Set();
-    entryList.forEach(entry => {
-        uniquePubkeys.add(entry.pubkey);
-    });
-    
-    // Convert the Set to an array and join pubkeys
-    const pubkeys = [...uniquePubkeys].join(', ');
-    
-    // Create Blob with unique pubkeys
-    const blob = new Blob([pubkeys], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'goatlist.txt');
-};
+        const uniquePubkeys = new Set(entryList.map(entry => entry.pubkey));
+        const pubkeys = [...uniquePubkeys].join(', ');
+        const blob = new Blob([pubkeys], { type: 'text/plain;charset=utf-8' });
+        saveAs(blob, 'goatlist.txt');
+    };
 
+    const handleDeleteEntry = async (id: string) => {
+        await deleteDoc(doc(db, 'users', id));
+        fetchAndDisplayEntries();
+    };
 
     return (
         <div className="container">
             <button className="border border-gray rounded-lg py-2 px-4 mt-3 mb-3 hover:scale-105" onClick={handleDownloadPubkeys}>
-            save wallet list
+                save wallet list
             </button>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '10px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {entryList.map((entry, index) => (
-                    <a
-                        key={index}
-                        href={`https://x.com/${entry.twitterHandle}`}
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                        style={{ textDecoration: 'none' }}
-                    >
-                        <div style={{ textAlign: 'center', backgroundColor: 'transparent', border: '2px solid gray', borderRadius: '10px', padding: '10px', transition: 'transform 0.2s', cursor: 'pointer' }} 
-                            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
-                            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                    <div key={index} className="relative bg-transparent border-2 border-gray-500 rounded-lg p-4 transition-transform transform hover:scale-105">
+                        {publicKey?.toBase58() === entry.pubkey && (
+                            <button 
+                                onClick={() => handleDeleteEntry(entry.id)} 
+                                className="absolute top-2 right-2 text-red-500"
+                            >
+                                <FaTimes />
+                            </button>
+                        )}
+                        <a
+                            href={`https://x.com/${entry.twitterHandle}`}
+                            target="_blank"
+                            rel="noopener noreferrer nofollow"
+                            className="text-center"
                         >
-                            <img src={entry.image} alt="Profile" style={{ width: '100px', height: '100px', borderRadius: '50%', display: 'block', margin: '0 auto' }} />
-                            <p style={{ color: 'white', fontSize: 'clamp(10px, 3vw, 20px)', overflowWrap: 'break-word' }}>
-                            <strong>{entry.twitterHandle}</strong>
+                            <img src={entry.image} alt="Profile" className="w-24 h-24 rounded-full mx-auto" />
+                            <p className="text-white text-lg overflow-wrap break-word">
+                                <strong>{entry.twitterHandle}</strong>
                             </p>
-                            <p style={{ color: 'white' }}>{entry.nickname}</p>
-                        </div>
-                    </a>
+                            <p className="text-white">{entry.nickname}</p>
+                        </a>
+                    </div>
                 ))}
             </div>
         </div>
