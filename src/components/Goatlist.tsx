@@ -91,9 +91,9 @@ function ViewEntries() {
                 className="border border-gray rounded-lg py-2 px-4 mt-3 mb-3 hover:scale-105" 
                 onClick={handleDownloadPubkeys}
             >
-                Save Wallet List
+                save wallet list
             </button>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '10px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: '10px' }}>
                 {entryList.map((entry) => (
                     <div key={entry.id} className="text-center bg-transparent border-2 border-gray rounded-lg p-4 transition-transform transform hover:scale-105">
                         {editingId === entry.id ? (
